@@ -1,0 +1,7 @@
+#!/bin/bash
+xsetwacom set "Wacom Bamboo pad" Button2 "core key x"
+xsetwacom set "Wacom Bamboo pad" Button1 "core key CTRL z"
+xsetwacom set "Wacom Bamboo pad" Button3 "core key CTRL y"
+xsetwacom set "Wacom Bamboo pad" AbsWup "core key CTRL SHIFT NumpadMinus"
+xsetwacom set "Wacom Bamboo pad" AbsWdn "core key CTRL SHIFT NumpadPlus"
+xsetwacom set "Wacom Bamboo" TopX -11040

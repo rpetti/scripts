@@ -1,0 +1,3 @@
+#!/bin/bash
+fusermount -u ~/arch/crypt
+rm -rf ~/.thumbnails

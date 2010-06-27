@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while(true)
+do
+	ssh -t rpetti@tauron screen -x
+done
