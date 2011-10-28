@@ -1,0 +1,3 @@
+<favourites>
+    <favourite name="YouTube" thumb="/home/rpetti/.xbmc/addons/plugin.video.youtube/icon.png">ActivateWindow(10024,&quot;plugin://plugin.video.youtube/&quot;)</favourite>
+</favourites>
