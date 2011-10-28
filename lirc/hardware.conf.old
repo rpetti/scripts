@@ -2,7 +2,7 @@
 #
 #Chosen Remote Control
 REMOTE="Custom"
-REMOTE_MODULES="lirc_atiusb"
+REMOTE_MODULES="lirc_dev"
 #REMOTE_DRIVER="atilibusb"
 REMOTE_DEVICE="/dev/lirc0"
 REMOTE_LIRCD_CONF="/etc/init.d/lircd.conf"
