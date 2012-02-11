@@ -52,6 +52,7 @@ sub getTitle {
 	my $newtitle = decode_entities($title[0]);
 	$newtitle =~ s/\// /g;
 	$newtitle =~ s/://g;
+	$newtitle =~ s/"/'/g;
 	return $newtitle;
 }
 
