@@ -34,10 +34,24 @@ sub uniq {
 }
 
 sub getTitle {
-	my $content = get $_;
+	my $content;
+	my $url = $_;
+	my %i = 0;
+	while(1){
+		if($content = get($url)){
+			last;
+		} else {
+			if(++$i == 5){
+				print "ERROR getting title for $url!\n";
+				last;
+			}
+		}
+	}
+	
 	my @title = $content =~ /meta *name="title" *content="([^"]*)"/;
 	my $newtitle = decode_entities($title[0]);
 	$newtitle =~ s/\// /g;
+	$newtitle =~ s/://g;
 	return $newtitle;
 }
 
@@ -75,7 +89,7 @@ sub download {
 	unless(-e $filename || hasBeenDownloaded($url)){
 		print "Downloading '$title' from $url\n" if $debug;
 		system("youtube2mp3", $url, $filename);
-		system("id3", "-A", "Brony", "-c", getShortUrl($url), $filename);
+		system("id3", "-t", $title, "-A", "Brony", "-c", getShortUrl($url), $filename);
 	} else {
 		print "Skipping '$title', already downloaded.\n";
 	}
