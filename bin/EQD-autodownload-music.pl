@@ -90,7 +90,7 @@ sub download {
 	unless(-e $filename || hasBeenDownloaded($url)){
 		print "Downloading '$title' from $url\n" if $debug;
 		system("youtube2mp3", $url, $filename);
-		system("id3v2", "-t", $title, "-A", "Brony", "-c", getShortUrl($url), $filename);
+		system("id3v2", "-t", $title, "-A", "Brony", "--WOAR", getShortUrl($url), $filename);
 	} else {
 		print "Skipping '$title', already downloaded.\n";
 	}
