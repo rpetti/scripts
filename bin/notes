@@ -98,7 +98,7 @@ $functions = {
 
 my $term = Term::ReadLine->new('notes');
 
-while(defined ($_ = $term->readline(">"))){
+while(defined ($_ = $term->readline("> "))){
 	chomp;
 	if (/^$/) {
 		next;
