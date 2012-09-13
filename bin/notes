@@ -61,7 +61,7 @@ $list = sub {
 $update = sub {
 	my $update = shift;
 	print "Update with \"" . $update . "\" [y/n] ";
-	$response = <>;
+	my $response = <>;
 	chomp $response;
 	if ($response =~ /^[yY]/) {
 		addnote($update);
@@ -80,10 +80,20 @@ $search = sub {
 	}
 };
 
+$exit = sub {
+	print "Would you like to quit? [y/n] ";
+	my $response = <>;
+	chomp $response;
+	if ($response =~ /^[yY]/) {
+		exit(0);
+	}
+};
+
 $functions = {
 	'u' => $update,
 	'l' => $list,
 	's' => $search,
+	'q' => $exit,
 };
 
 my $term = Term::ReadLine->new('notes');
