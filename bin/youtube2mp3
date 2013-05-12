@@ -1,4 +1,8 @@
+#!/bin/bash
+
 x=~/.youtube-dl-$RANDOM-$RANDOM.flv
-youtube-dl --output=$x --format=18 "$1"
-ffmpeg -i $x -acodec libmp3lame -ac 2 -ab 128k -vn -y "$2"
+youtube-dl --output=$x --format=37 "$1" >/dev/null 2>&1 || \
+youtube-dl --output=$x --format=22 "$1" >/dev/null 2>&1 || \
+youtube-dl --output=$x --format=18 "$1" >/dev/null 
+/usr/bin/ffmpeg -i $x -acodec libmp3lame -ac 2 -ab 320k -vn -y "$2" >/dev/null 2>&1
 rm $x

@@ -1,0 +1,106 @@
+#!/usr/bin/perl
+
+use Term::ReadLine;
+use POSIX;
+
+$notesfile = "/home/rpetti/notes-git/journal.txt";
+$maxlistitems = 20;
+
+sub readfile {
+	open(FILE, "<$notesfile") or die $!;
+	my @contents = <FILE>;
+	close(FILE);
+	chomp @contents;
+	return @contents;
+}
+
+sub writefile(@) {
+	my @contents = shift;
+	open(FILE, ">$notesfile") or die $!;
+	foreach $line (@contents) {
+		print FILE $line . "\n";
+	}
+	close(FILE);
+};
+
+sub append {
+	my $line = shift;
+	open(FILE, ">>$notesfile") or die $!;
+	print FILE $line . "\n";
+	close(FILE);
+}
+
+sub search {
+	my $term = shift;
+	my @contents = readfile();
+	my @results = grep(/$term/,@contents);
+	return @results;
+}
+
+sub currentdate {
+	return strftime("%Y-%m-%d %T",localtime);
+}
+
+sub addnote {
+	my $update = shift;
+	append(currentdate() . " => " . $update);
+}
+
+$list = sub {
+	my @content = readfile();
+	my $count = @content;
+	my $start = $count-$maxlistitems;
+	if ($start < 0) {
+		$start = 0;
+	}
+	for ($i = $start; $i < $count; $i++) {
+		print $content[$i], "\n";
+	}
+};
+
+$update = sub {
+	my $update = shift;
+	print "Update with \"" . $update . "\" [y/n] ";
+	$response = <>;
+	chomp $response;
+	if ($response =~ /^[yY]/) {
+		addnote($update);
+		print "Updated.\n";
+		return;
+	} else {
+		print "Not Updated.\n";
+	}
+};
+
+$search = sub {
+	my $term = shift;
+	my @results = search($term);
+	foreach $result (@results) {
+		print $result, "\n";
+	}
+};
+
+$functions = {
+	'u' => $update,
+	'l' => $list,
+	's' => $search,
+};
+
+my $term = Term::ReadLine->new('notes');
+
+while(defined ($_ = $term->readline(">"))){
+	chomp;
+	if (/^$/) {
+		next;
+	}
+	my $line = $_;
+	$line =~ m/^([\S]*) *(.*) *$/;
+	my $command = $1;
+	my $arg = $2;
+	if($functions->{$command}){
+		my $function = $functions->{$command};
+		$function->($arg);
+	} else {
+		print("No such command: '" . $command . "'.\n");
+	}
+}
