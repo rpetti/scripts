@@ -28,7 +28,7 @@ print vid
 if subprocess.call(["youtube-dl", "--id", "--write-thumbnail", "-x", "--audio-format", "mp3", "--audio-quality", "128K", url]) != 0:
 	raise Exception('could not download')
 
-if subprocess.call(["lame", "--ti", vid + ".jpg", "--tt", title, "--ta", artist, vid + ".mp3"]) != 0:
+if subprocess.call(["eyeD3","-a",artist,"-t",title,"--set-encoding=utf8","--add-image="+vid+".jpg:ICON",vid+".mp3"]) != 0:
 	raise Exception('could not tag')
 
 os.rename(vid + '.mp3', '/home/rpetti/Music/'+title+'.mp3')
