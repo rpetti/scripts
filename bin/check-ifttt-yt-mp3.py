@@ -14,7 +14,8 @@ artist_filter_file='/home/rpetti/Dropbox/IFTTT/YouTube/MusicArtists.txt'
 artist_list = []
 
 with open(artist_filter_file) as f:
-	artist_list = f.readlines();
+	for line in f:
+		artist_list.append(line.strip())
 
 def is_url_from_approved_artist(url):
 	json_data = subprocess.check_output(["youtube-dl","-j",url])
@@ -26,7 +27,7 @@ def is_url_from_approved_artist(url):
 		return False
 
 def download_song(url):
-	subprocess.call(["yt-mp3.py",url])
+	subprocess.call(["/home/rpetti/bin/yt-mp3.py",url])
 
 if os.path.isfile(dropbox_filename):
 	tempdir = tempfile.mkdtemp()
