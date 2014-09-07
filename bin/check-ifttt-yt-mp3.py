@@ -39,7 +39,7 @@ if os.path.isfile(dropbox_filename):
 				if is_url_from_approved_artist(url):
 					download_song(url)
 	shutil.rmtree(tempdir)
-	subprocess.call(["viper-nofify","yt-2-mp3","favorites downloaded"])
+	#subprocess.call(["viper-nofify","yt-2-mp3","favorites downloaded"])
 else:
 	print "no new favorites to check"
 
