@@ -21,8 +21,6 @@ metadata = json.loads(json_data)
 title=metadata[u'title']
 artist=metadata[u'uploader']
 vid=metadata[u'id']
-print title
-print artist
 print vid
 
 if subprocess.call(["youtube-dl", "--id", "--write-thumbnail", "-x", "--audio-format", "mp3", "--audio-quality", "128K", url]) != 0:

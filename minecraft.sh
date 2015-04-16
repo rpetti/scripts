@@ -32,7 +32,9 @@ restart)
 
 update)
 	$0 stop
-	wget -O minecraft_server.jar https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar
+	url=`curl https://minecraft.net/download 2>/dev/null | sed -ne 's#.*href="\(https://s3.amazon[^"]*minecraft_server.[0-9.]*\.jar\)".*#\1#p'`
+	echo downloading $url
+	wget -O minecraft_server.jar $url
 	$0 start
 
 esac
