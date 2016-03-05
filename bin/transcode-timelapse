@@ -1,1 +1,0 @@
-mencoder mf://*/*.JPG -mf fps=30:type=jpg -ovc lavc -lavcopts vcodec=mpeg4:vhq:trell:vqscale=2 -vf scale=1920:1200 -oac copy -o timelapse.mp4
