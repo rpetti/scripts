@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pgrep VBoxClient | xargs kill -9
+sleep 2
+VBoxClient-all

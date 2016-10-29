@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker ps -a -q -f "status=exited" | xargs -r docker rm -v
+docker images -f "dangling=true" -q | xargs -r docker rmi
