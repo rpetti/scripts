@@ -1,2 +1,4 @@
 xbmc/userdata/addon_data/plugin.video.youtube/settings.xml
 xbmc/userdata/addon_data/plugin.video.youtube.beta/settings.xml
+bin/p4
+bin/p4d
