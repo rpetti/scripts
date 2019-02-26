@@ -1,3 +1,0 @@
-#!/bin/bash
-
-$HOME/netbeans-7.1/bin/netbeans --jdkhome /usr/lib/jvm/java-6-oracle

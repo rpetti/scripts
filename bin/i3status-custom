@@ -1,0 +1,11 @@
+#!/bin/bash
+
+memtotal=$(( `grep ^MemTotal /proc/meminfo | awk '{print $2}'` / 1024 ))MB
+
+i3status | while :
+do
+	read line
+	mem=`dstat --nocolor -m 1 1 | sed -n -e 's/^[^m]*m *\([0-9]\+M\).*/\1/p'`
+	echo "$mem/$memtotal | $line"
+done
+
